@@ -1,0 +1,25 @@
+{
+  "name": "redux-Summary",
+  "version": "1.0.0",
+  "description": "react+redux     redux 中间件     redux-logger     redux-promise     redux-thunk     redux-saga     dva",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-scripts": "^1.1.4",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.0"
+  }
+}
