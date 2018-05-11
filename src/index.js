@@ -1,13 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Counter from './components/Counter';
-
+import Login from './components/Login';
+import Logout from './components/Logout';
 import {Provider} from 'react-redux';
-import store from './store'
+import ReactDOM from 'react-dom';
+import store from './store';
 
-ReactDOM.render(
+import { Route,Redirect,Switch} from 'react-router-dom'
+
+import { ConnectedRouter} from 'react-router-redux'
+import createHistory from 'history/createHashHistory'
+const history = createHistory();
+ReactDOM.render((
     <Provider store={store}>
-        <Counter />
+        <ConnectedRouter history={history}>
+            <Switch>
+                <Route path="/login" component={Login}/>
+                <Route path="/logout" component={Logout}/>
+                <Redirect to="/login"/>
+            </Switch>
+        </ConnectedRouter>
     </Provider>
-,document.querySelector("#root"));
-
+),document.querySelector('#root'));

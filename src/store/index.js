@@ -1,14 +1,30 @@
-import {createStore,applyMiddleware} from 'redux';
-import reducers from './reducers';
+import reducer from './reducers';
+import {
+    createStore,
+    applyMiddleware,
+    compose
+} from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import {rootSaga} from '../sagas';
 
-// 这是一个可以帮你运行saga的中间件
-let SagaMiddleware = createSagaMiddleware();
-let store = createStore(reducers,applyMiddleware(SagaMiddleware));
+import {routerMiddleware} from 'react-router-redux';
+import createHistory from 'history/createHashHistory';
+import rootSaga from '../sagas';
 
-// 通过中间件执行或者运行saga
-SagaMiddleware.run(rootSaga,store);
+const history = createHistory();
+const router = routerMiddleware(history);
+
+let sagaMiddelware = createSagaMiddleware();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+let store = composeEnhancers(applyMiddleware(sagaMiddelware, router))(createStore)(reducer);
+
+// sagaMiddelware.run(rootSaga, {
+//     subscribe: store.subscribe,
+//     dispatch: store.dispatch,
+//     getState: store.getState
+// });
+
+sagaMiddelware.run(rootSaga, store);
 
 window.store = store;
 

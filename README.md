@@ -7,3 +7,5 @@
 ## saga API使用
 
     takeEvery,all,call,put,take
+
+## 登录注册
